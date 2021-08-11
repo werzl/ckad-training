@@ -1,7 +1,6 @@
 # kubernetes-for-developers
 
 ## Pluralsight Course
-https://www.pluralsight.com/courses/kubernetes-developers-core-concepts 
-
-## Course Materials
+### Core Concepts
+https://www.pluralsight.com/courses/kubernetes-developers-core-concepts   
 https://github.com/DanWahlin/DockerAndKubernetesCourseCode
