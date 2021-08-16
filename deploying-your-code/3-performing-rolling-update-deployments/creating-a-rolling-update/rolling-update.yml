@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 2 #Number of pod replicas
+  minReadySeconds: 1 #Seconds new Pod should be ready to be considered healthy (default 0)
+  progressDeadlineSeconds: 60 #Seconds to wait before reporting stalled Deployment
+  revisionHistoryLimit: 5 #Number of ReplicaSets that can be rolled back (default 10)
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 #Max pods that can exceed the replicas count (default 25% of replicas)
+      maxUnavailable: 1 #Max pods that can be unavailable during the rolling update (default 25% of replicas)
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: <Port>
