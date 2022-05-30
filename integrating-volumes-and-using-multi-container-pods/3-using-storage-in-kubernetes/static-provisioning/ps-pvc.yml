@@ -1,0 +1,19 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ps-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ps-fast
+  resources:
+    requests:
+      storage: 50Gi # With static provisioning, the PVC will bind to a PV with the same as or less storage
+                    # It will NOT bind to a PV with MORE storage
+
+# To create resource:
+# kubectl apply -f ./ps-pvc.yml
+
+# To view created resource:
+# kubectl get pvc ps-pvc
