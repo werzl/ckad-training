@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassador-app
+spec:
+  containers:
+  # main container:
+  # - just an image with curl installed
+  # - sends curl requests to localhost:9000
+  - name: main-app
+    image: nigelpoulton/curl:1.0
+    command: ["sleep", "3600"]
+
+  # ambassador container
+  # - listens on port 9000
+  # - proxies the request to a server in the outside world
+  - name: ambassador
+    image: nigelpoulton/nginx-ambassador:1.0

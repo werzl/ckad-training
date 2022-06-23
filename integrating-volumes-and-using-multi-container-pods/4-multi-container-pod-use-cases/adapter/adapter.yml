@@ -11,7 +11,7 @@ spec:
     - containerPort: 80
 
   # adapter container:
-  # - uses an image to export metrics from nginx and transform it into the prometheus format
+  # - uses the 'nginx-prometheus-exporter' image to export metrics from nginx and transform it into the prometheus format
   - name: transformer
     image: nginx/nginx-prometheus-exporter
     args: ["-nginx.scrape-uri","http://localhost/nginx_status"]
