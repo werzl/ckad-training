@@ -6,12 +6,12 @@ metadata:
     app: git-syncer
 spec:
   containers:
-  - image: nginx
+  - image: nginx # main container
     name: web
     volumeMounts:
     - name: html
       mountPath: /usr/share/nginx/
-  - image: k8s.gcr.io/git-sync:v3.1.5
+  - image: k8s.gcr.io/git-sync:v3.1.5 # sidecar container
     name: init-sync-ctr
     volumeMounts:
     - name: html
