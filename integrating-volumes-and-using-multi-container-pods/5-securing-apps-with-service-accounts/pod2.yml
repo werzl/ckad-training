@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sa-demo
+spec:
+  terminationGracePeriodSeconds: 1
+  serviceAccountName: service-reader
+  containers:
+  # main container
+  - name: app
+    image: nigelpoulton/curl:1.0
+    command: ['sh', '-c', 'sleep 9999']
+
+  # ambassador container
+  # - the image binds 'kubectl proxy' to a localhost port
+  # - then accepts requests on that port and forwards them onto the k8s api server
+  # - then uses the service-reader SA for auth
+  - name: test1
+    image: nigelpoulton/k8s-api-proxy:1.0

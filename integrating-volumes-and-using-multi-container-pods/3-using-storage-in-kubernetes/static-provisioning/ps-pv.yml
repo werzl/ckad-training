@@ -1,0 +1,20 @@
+# Persistent Volume that attaches to a 50GB storage volume called ps-vol
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ps-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ps-fast
+  capacity:
+    storage: 50Gi
+  persistentVolumeReclaimPolicy: Retain # retain or delete persistent data
+  gcePersistentDisk:  # plugin to locate and load a volume
+    pdName: ps-vol  
+
+# To create resource:
+# kubectl apply -f ./ps-pv.yml
+
+# To view created resource:
+# kubectl get pv ps-pv

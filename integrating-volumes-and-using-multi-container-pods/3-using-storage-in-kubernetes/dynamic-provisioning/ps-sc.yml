@@ -1,0 +1,18 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1 # defining from the storage.k8s.io subgroup is the same functionality but newer. 
+                              # K8s started splitting the core API group (v1) up into subgroups
+metadata:
+  name: ps-gcp-fast
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/gce-pd
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: pd-ssd # Persistent Disk (SSD)
+  replication-type: none 
+
+# To create resource:
+# kubectl apply -f ./ps-sc.yml
+
+# To view created resource:
+# kubectl get sc ps-sc
